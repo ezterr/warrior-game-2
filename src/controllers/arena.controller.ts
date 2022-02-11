@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 export class ArenaController {
   public static arenaView(req: Request, res: Response) {
-    res.send('addView');
+    res.render('arena');
   }
 
   public static fight(req: Request, res: Response) {
@@ -14,6 +14,6 @@ export class ArenaController {
   }
 
   public static resultView(req: Request, res: Response) {
-    res.send('edit');
+    res.render('arena/result');
   }
 }

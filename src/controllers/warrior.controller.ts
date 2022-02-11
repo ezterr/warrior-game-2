@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 export class WarriorController {
   public static addView(req: Request, res: Response) {
-    res.send('addView');
+    res.render('warrior/add');
   }
 
   public static add(req: Request, res: Response) {
@@ -10,7 +10,7 @@ export class WarriorController {
   }
 
   public static editView(req: Request, res: Response) {
-    res.send('editView');
+    res.render('warrior/edit');
   }
 
   public static edit(req: Request, res: Response) {
