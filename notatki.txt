@@ -49,4 +49,3 @@ nigdy się nie zmieniają
 
 *Realizacja: unique na bazie/ logika/ unique + logika
 **Możesz zrobić bardzo ładną wersje tego - poprzez stylowanie i ikony
-s
