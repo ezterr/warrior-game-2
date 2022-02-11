@@ -1,0 +1,52 @@
+1) Walka z różnymi przeciwnikami
+2) Przeciwnicy są tworzeni przez inne osoby w systemie
+3) Aplikacja składa się z 3 części:
+    -Rejestracja wojownika
+    -arena walk
+    -sala sław
+
+! nie implementujemy autoryzacji każdy może stworzyć dowolnego wojownika i przeprowadzać dowolne walki
+
+4) Wszystkie dane zapisywane są w bazie danych
+
+5)
+--------------------
+Rejestracja wojownika polega na podaniu:
+    - Imię - musi być unikalne w stosunku do wojowników
+    - siła
+    - obrona
+    - wytrzymałość
+    - Zwinność
+
+Można rozdać maksymalnie 10 punktów na wszystkie umiejętności, każda statystyka musi mieć co najmniej 1. Te informacje
+nigdy się nie zmieniają
+-----------------------------
+
+6) liczba zwycięstw - domyślnie 0
+
+7) Arena walk
+    Polega na tym że wybieramy z dwóch selectów dwóch różnych wojowników, nie można tych samych. Walczą oni ze sobą,
+    na końcu widzimy log całej walki na frontendzie
+
+8) Algorytm Walki
+    - Każdy na początku ma tyle punktów życia (HP) ile wynosi jego (wytrzymałośc * 10). Każdy ma tyle tarczy ile wynosi
+      jego obrona.
+    - Wojownik, który zaczyna wykonuje atak o wartości równej jego sile
+    - Jeżeli wojownik ma tarcze + zwinność większą niż siła ataku to
+        a) odejmowane mu jest tarcza w wysokości ataku
+            - Jeżeli atak był większy niż tarcza to odejmowane jest mu od życia pozostała ilość siły ataku
+            - Jeżeli atak był maksymalnie tyle ile wynosi aktualnie tarcza, to nie jest odejmowane życie
+    - Następnie zmiana kolejności i teraz atakowany zostaje atakującym, a atakujący zostaje atakowanym
+    - Powtarzamy punkty 2 i 4 tak długo aż ktoś nie umrze
+    - Gdy wojownik wygra dodajemy mu zwycięstwo
+
+9) podczas walki powinien generować się dokłądny log. Kto kogo atakuje, czy powiodła się obrona, ile zostało zabrane z
+    tarczy itp
+
+10) Sala sław
+    miejsce w którym wypisujemy 10 najlepszych śmiałków. Najwyżej pokazujemy z największą ilością zwycięstw. Pokazujemy
+    na liście: pozycje, ilość zwycięstw i imię wojownika
+
+*Realizacja: unique na bazie/ logika/ unique + logika
+**Możesz zrobić bardzo ładną wersje tego - poprzez stylowanie i ikony
+s
