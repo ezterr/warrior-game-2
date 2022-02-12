@@ -1,6 +1,7 @@
 import express from 'express';
 import { engine } from 'express-handlebars';
 import { router } from './routes';
+import './utils/db';
 
 const app = express();
 
