@@ -1,8 +1,13 @@
 import { Router } from 'express';
+import { WarriorRecord } from '../records/warrior.record';
 
 export const router = Router();
 
 router
-  .get('/', (req, res) => {
-    res.render('ranking');
+  .get('/', async (req, res) => {
+    const warriors = await WarriorRecord.findGivenQuantity(10);
+
+    res.render('ranking', {
+      warriors,
+    });
   });

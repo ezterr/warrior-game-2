@@ -1,3 +1,4 @@
 import { FieldPacket } from 'mysql2';
+import { WarriorData } from './warrior-data';
 
-export type DateForCheckName = [Record<string, string>[], FieldPacket[]]
+export type WarriorRecordsFromDb = [WarriorData[], FieldPacket[]];

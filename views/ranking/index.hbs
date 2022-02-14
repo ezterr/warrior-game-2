@@ -1,0 +1,22 @@
+<h1>Ściana Chwały</h1>
+<table>
+    <thead>
+        <tr>
+            <th>lp.</th>
+            <th>Nazwa wojownika</th>
+            <th>Ilość zwycięstw</th>
+            <th>Ilość przegranych</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each warriors}}
+            <tr>
+                <td>{{@index}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.winFights}}</td>
+                <td>{{this.loseFights}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
