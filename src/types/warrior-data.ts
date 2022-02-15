@@ -1,6 +1,6 @@
 export interface WarriorData {
-    id?: string;
-    name: string,
+    id?: string | null;
+    name: string;
     strength: number;
     defense: number;
     stamina: number;

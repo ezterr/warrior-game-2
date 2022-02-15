@@ -4,15 +4,18 @@ import { pool } from '../utils/db';
 import { WarriorRecordsFromDb } from '../types/data-from-db';
 import { WarriorData } from '../types/warrior-data';
 
-export class WarriorRecord {
+export class WarriorRecord implements WarriorData {
   public id: string | null = null;
   public readonly name: string;
   public readonly strength: number;
   public readonly stamina: number;
   public readonly defense: number;
   public readonly agility: number;
-  public readonly winFights: number;
-  public readonly loseFights: number;
+  public winFights: number;
+  public loseFights: number;
+
+  private currentHp: number;
+  private currentDefense: number;
 
   constructor(warrior: WarriorData) {
     this.id = warrior.id || null;
@@ -24,7 +27,26 @@ export class WarriorRecord {
     this.winFights = warrior.winFights;
     this.loseFights = warrior.loseFights;
 
+    this.currentHp = warrior.stamina * 10;
+    this.currentDefense = warrior.defense;
+
     this.validate();
+  }
+
+  public get hp(): number {
+    return this.currentHp;
+  }
+
+  public set hp(hp: number) {
+    this.currentHp = hp;
+  }
+
+  public get currDefense() {
+    return this.currentDefense;
+  }
+
+  public set currDefense(defense: number) {
+    this.currentDefense = defense;
   }
 
   private validate() {
@@ -65,6 +87,14 @@ export class WarriorRecord {
     return result.map((e) => new WarriorRecord(e));
   }
 
+  public static async findById(id: string): Promise<WarriorRecord | null> {
+    const [result] = await pool.execute('SELECT * FROM `warrior` WHERE `id` = :id;', {
+      id,
+    }) as WarriorRecordsFromDb;
+
+    return result.length ? new WarriorRecord(result[0]) : null;
+  }
+
   public async insert() {
     this.id = this.id ?? uuid();
 
@@ -84,11 +114,29 @@ export class WarriorRecord {
     return this.id;
   }
 
-  public async update(id: string) {
+  public async updateWinRatio(id: string) {
+    if (!id) throw new Error('You must enter the id');
+
     await pool.execute('UPDATE `warrior` SET `winFights`=:winFights, loseFights=:loseFights WHERE `id`=:id;', {
       id,
       winFights: this.winFights,
       loseFights: this.loseFights,
     });
+  }
+
+  public async addWin() {
+    if (!this.id) throw new Error('The record must contain id.');
+
+    this.winFights++;
+
+    await this.updateWinRatio(this.id as string);
+  }
+
+  public async addLose() {
+    if (!this.id) throw new Error('The record must contain id.');
+
+    this.loseFights++;
+
+    await this.updateWinRatio(this.id as string);
   }
 }
