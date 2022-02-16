@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { start } from 'repl';
 import { WarriorRecord } from '../records/warrior.record';
 import { Arena } from '../utils/arena';
 
@@ -23,16 +22,16 @@ export class ArenaController {
     if (!warriorOne || !warriorTwo) throw new Error('Warrior not found');
 
     const arena = new Arena(warriorOne as WarriorRecord, warriorTwo as WarriorRecord);
-    arena.fight();
+    const fightLog = arena.fight();
 
-    res.send('add');
+    res.render('arena/result', {
+      fightLog,
+      warriorOneId: warriorOne.id,
+      warriorTwoId: warriorTwo.id,
+    });
   }
 
   public static randomFight(req: Request, res: Response) {
     res.send('editView');
-  }
-
-  public static resultView(req: Request, res: Response) {
-    res.render('arena/result');
   }
 }

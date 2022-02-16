@@ -7,19 +7,20 @@ import { WarriorData } from '../types/warrior-data';
 export class WarriorRecord implements WarriorData {
   public id: string | null = null;
   public readonly name: string;
+  public readonly hp: number;
   public readonly strength: number;
   public readonly stamina: number;
   public readonly defense: number;
   public readonly agility: number;
   public winFights: number;
   public loseFights: number;
-
-  private currentHp: number;
-  private currentDefense: number;
+  public currentHp: number;
+  public currentDefense: number;
 
   constructor(warrior: WarriorData) {
     this.id = warrior.id || null;
     this.name = warrior.name;
+    this.hp = warrior.stamina * 10;
     this.strength = warrior.strength;
     this.defense = warrior.defense;
     this.stamina = warrior.stamina;
@@ -33,22 +34,6 @@ export class WarriorRecord implements WarriorData {
     this.validate();
   }
 
-  public get hp(): number {
-    return this.currentHp;
-  }
-
-  public set hp(hp: number) {
-    this.currentHp = hp;
-  }
-
-  public get currDefense() {
-    return this.currentDefense;
-  }
-
-  public set currDefense(defense: number) {
-    this.currentDefense = defense;
-  }
-
   private validate() {
     if (!this.name || this.name.trim().length < 3 || this.name.length > 50) {
       throw new Error('name must contain at least 3 characters, cannot exceed 50 characters and must be a string.');
@@ -59,6 +44,10 @@ export class WarriorRecord implements WarriorData {
 
     if (this.strength <= 0 || this.stamina <= 0 || this.agility <= 0 || this.defense <= 0) {
       throw new Error('Each skill should be assigned at least 1 point.');
+    }
+
+    if (Number.isNaN(Number(this.winFights)) || Number.isNaN(Number(this.loseFights))) {
+      throw new Error('wins or lose must be a number');
     }
   }
 
@@ -96,6 +85,7 @@ export class WarriorRecord implements WarriorData {
   }
 
   public async insert() {
+    this.validate();
     this.id = this.id ?? uuid();
 
     await this.checkUniquenessName();
@@ -115,6 +105,7 @@ export class WarriorRecord implements WarriorData {
   }
 
   public async updateWinRatio(id: string) {
+    this.validate();
     if (!id) throw new Error('You must enter the id');
 
     await pool.execute('UPDATE `warrior` SET `winFights`=:winFights, loseFights=:loseFights WHERE `id`=:id;', {

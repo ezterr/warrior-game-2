@@ -19,7 +19,7 @@ export class Arena {
     const tourLog: TourLog = this.nextTour();
     fightLog.push(tourLog);
 
-    while (tourLog.attacked.hp > 0) {
+    while (tourLog.attacked.currentHp > 0) {
       fightLog.push(this.nextTour());
     }
 
@@ -30,17 +30,31 @@ export class Arena {
     const attacker = this.activeWarrior === ActiveWarrior.first ? this.warriorOne : this.warriorTwo;
     const attacked = this.activeWarrior === ActiveWarrior.first ? this.warriorTwo : this.warriorOne;
 
-    if (attacked.currDefense + attacked.agility > attacker.strength && attacked.currDefense > 0) {
-      attacked.currDefense -= attacker.strength;
+    let hpDamage = 0;
+    let defenseDamage = 0;
 
-      if (attacked.currDefense < 0) {
-        attacked.hp += attacked.currDefense;
+    if (attacked.currentDefense + attacked.agility > attacker.strength && attacked.currentDefense > 0) {
+      defenseDamage = attacked.currentDefense >= attacker.strength ? attacker.strength : attacked.currentDefense;
+      attacked.currentDefense -= attacker.strength;
+
+      if (attacked.currentDefense < 0) {
+        attacked.currentHp += attacked.currentDefense;
+        hpDamage = attacked.currentDefense * (-1);
       }
     } else {
-      attacked.hp -= attacker.strength;
+      attacked.currentHp -= attacker.strength;
+      hpDamage = attacker.strength;
     }
     this.activeWarrior = this.activeWarrior === ActiveWarrior.first ? ActiveWarrior.second : ActiveWarrior.first;
 
-    return new TourLog(this.activeWarrior, attacker, attacked, attacker.strength, attacked.currDefense, attacked.hp);
+    return new TourLog(
+      this.activeWarrior,
+      attacker,
+      attacked,
+      { currentDefense: attacker.currentDefense, currentHp: attacker.currentHp },
+      { currentDefense: attacked.currentDefense, currentHp: attacked.currentHp },
+      hpDamage,
+      defenseDamage,
+    );
   }
 }

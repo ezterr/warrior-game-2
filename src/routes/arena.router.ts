@@ -8,5 +8,4 @@ router.route('/')
   .post(ArenaController.fight);
 
 router
-  .get('/result/:id', ArenaController.resultView)
   .post('/random', ArenaController.randomFight);

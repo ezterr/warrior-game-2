@@ -1,0 +1,37 @@
+<main>
+    <h1>Wynik walki</h1>
+
+    <section>
+        {{#each fightLog}}
+            <div>
+                <div>
+                    <h2>{{this.attacker.name}} (Atakujący)</h2>
+                    <div>Zadał {{this.attackerDamage}} obrażeń</div>
+                </div>
+
+                <div>
+                    <h2>{{this.attacked.name}} (Broniący)</h2>
+                    <div>Broni się, zostały mu zebrane {{this.defenseDamage}} punkt z tarczy i {{this.hpDamage}} punkt życia</div>
+                </div>
+
+                <div>
+                    <div>
+                        {{#if (comparison this.attacker.id ../warriorOneId)}}
+                            {{>warriorFightStat warrior=this.attacker warriorCurrentStats=this.currentAttacker}}
+                        {{else}}
+                            {{>warriorFightStat warrior=this.attacked warriorCurrentStats=this.currentAttacked}}
+                        {{/if}}
+                    </div>
+
+                    <div>
+                        {{#if (comparison this.attacker.id ../warriorTwoId)}}
+                            {{>warriorFightStat warrior=this.attacker warriorCurrentStats=this.currentAttacker}}
+                        {{else}}
+                            {{>warriorFightStat warrior=this.attacked warriorCurrentStats=this.currentAttacked}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </section>
+</main>

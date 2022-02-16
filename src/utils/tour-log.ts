@@ -7,8 +7,9 @@ export class TourLog {
         public readonly activeWarrior: ActiveWarrior,
         public readonly attacker: WarriorRecord,
         public readonly attacked: WarriorRecord,
-        public readonly attackerDamage: number,
-        public readonly attackedCurrentDefense: number,
-        public readonly attackedCurrentHp: number,
+        public readonly currentAttacker: Record<string, number>,
+        public readonly currentAttacked: Record<string, number>,
+        public readonly hpDamage: number,
+        public readonly defenseDamage: number,
   ) {}
 }
