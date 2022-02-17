@@ -1,37 +1,61 @@
 <main>
-    <h1>Wynik walki</h1>
+    <h1>ARENA</h1>
 
-    <section>
-        {{#each fightLog}}
-            <div>
-                <div>
-                    <h2>{{this.attacker.name}} (Atakujący)</h2>
-                    <div>Zadał {{this.attackerDamage}} obrażeń</div>
+    <h2>Wojownicy</h2>
+    <section class="stats__warrior__container">
+        {{>warriorStats warrior=warriorOne}}
+        <p class="vs">vs</p>
+        {{>warriorStats warrior=warriorTwo}}
+    </section>
+
+    <h2>Przebieg walki</h2>
+    <section class="fight__logs__container">
+        {{#each fightLogs}}
+            <div id="fight__log--{{@index}}" class="fight__log__container">
+                <p class="background__index">{{@index}}</p>
+                <div class="fight__log__element">
+                    <h3>{{this.attacker.name}} (Atakujący)</h3>
+                    <p>Zadał {{this.attackerDamage}} obrażeń</p>
                 </div>
 
-                <div>
-                    <h2>{{this.attacked.name}} (Broniący)</h2>
-                    <div>Broni się, zostały mu zebrane {{this.defenseDamage}} punkt z tarczy i {{this.hpDamage}} punkt życia</div>
+                <div class="fight__log__element">
+                    <h3>{{this.attacked.name}} (Broniący)</h3>
+                    <p>Broni się, zostały mu zebrane {{this.defenseDamage}} punkt z tarczy i {{this.hpDamage}} punkt życia</p>
                 </div>
 
-                <div>
-                    <div>
-                        {{#if (comparison this.attacker.id ../warriorOneId)}}
-                            {{>warriorFightStat warrior=this.attacker warriorCurrentStats=this.currentAttacker}}
-                        {{else}}
-                            {{>warriorFightStat warrior=this.attacked warriorCurrentStats=this.currentAttacked}}
-                        {{/if}}
-                    </div>
+                <div class="stats__warrior__container--simple">
+                    {{#if (comparison this.attacker.id ../warriorOne.id)}}
+                        {{>warriorFightStat warrior=this.attacker warriorCurrentStats=this.currentAttacker}}
+                    {{else}}
+                        {{>warriorFightStat
+                                warrior=this.attacked
+                                warriorCurrentStats=this.currentAttacked
+                                hpDamagee = this.hpDamage
+                                defenseDamagee = this.defenseDamage
+                        }}
+                    {{/if}}
 
-                    <div>
-                        {{#if (comparison this.attacker.id ../warriorTwoId)}}
-                            {{>warriorFightStat warrior=this.attacker warriorCurrentStats=this.currentAttacker}}
-                        {{else}}
-                            {{>warriorFightStat warrior=this.attacked warriorCurrentStats=this.currentAttacked}}
-                        {{/if}}
-                    </div>
+                    {{#if (comparison this.attacker.id ../warriorTwo.id)}}
+                        {{>warriorFightStat warrior=this.attacker warriorCurrentStats=this.currentAttacker}}
+                    {{else}}
+                        {{>warriorFightStat
+                                warrior=this.attacked
+                                warriorCurrentStats=this.currentAttacked
+                                hpDamagee = this.hpDamage
+                                defenseDamagee = this.defenseDamage
+                        }}
+                    {{/if}}
                 </div>
             </div>
         {{/each}}
+
+        <div id="fight__log--winner" class="fight__log__container">
+            <div class="fight__log__element">
+                <h3>Wygrał {{winner.name}}!!!</h3>
+            </div>
+        </div>
     </section>
+    <button class="previous__button">poprzedni</button>
+    <button class="next__button">następny</button>
 </main>
+<script src="/src/fight-result.js"></script>

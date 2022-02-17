@@ -1,5 +1,14 @@
-<div style="border: 1px solid black">
-    <h2>{{warrior.name}}</h2>
-    <p>hp: {{warriorCurrentStats.currentHp}}/{{warrior.hp}}</p>
-    <p>tarcza: {{warriorCurrentStats.currentDefense}}/{{warrior.defense}}</p>
+<div class="stats__warrior--simple">
+    <h3>{{warrior.name}}</h3>
+    {{#if hpDamagee}}
+        <p>hp: <span class="damage__text">{{warriorCurrentStats.currentHp}}</span>/{{warrior.hp}} (-{{hpDamagee}})</p>
+    {{else}}
+        <p>hp: {{warriorCurrentStats.currentHp}}/{{warrior.hp}}</p>
+    {{/if}}
+
+    {{#if defenseDamagee}}
+        <p>tarcza: <span class="damage__text">{{warriorCurrentStats.currentDefense}}</span>/{{warrior.defense}} (-{{defenseDamagee}})</p>
+    {{else}}
+        <p>tarcza: {{warriorCurrentStats.currentDefense}}/{{warrior.defense}}</p>
+    {{/if}}
 </div>

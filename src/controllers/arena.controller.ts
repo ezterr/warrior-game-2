@@ -22,12 +22,13 @@ export class ArenaController {
     if (!warriorOne || !warriorTwo) throw new Error('Warrior not found');
 
     const arena = new Arena(warriorOne as WarriorRecord, warriorTwo as WarriorRecord);
-    const fightLog = arena.fight();
+    const fightLogs = arena.fight();
 
     res.render('arena/result', {
-      fightLog,
-      warriorOneId: warriorOne.id,
-      warriorTwoId: warriorTwo.id,
+      fightLogs,
+      warriorOne,
+      warriorTwo,
+      winner: fightLogs[fightLogs.length - 1].attacker,
     });
   }
 

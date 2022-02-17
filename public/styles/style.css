@@ -1,0 +1,92 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+/* warrior stats */
+.stats__warrior__container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.stats__warrior__element {
+    margin: 5px;
+}
+
+.vs{
+    font-size: 10rem;
+}
+
+/* fight result */
+.fight__logs__container{
+    margin: auto;
+    width: fit-content;
+}
+
+.fight__log__container{
+    border: 2px solid black;
+    text-align: center;
+    width: fit-content;
+    padding: 5px;
+    position: relative;
+}
+
+.fight__log--disable{
+    display: none;
+}
+
+.fight__log__element {
+
+}
+
+.fight__log__element h3 {
+    margin: 5px;
+    font-size: 1rem;
+}
+
+.fight__log__element p {
+    margin: 5px;
+}
+
+.background__index {
+    font-size: 10rem;
+    position: absolute;
+    opacity: 0.1;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.stats__warrior--simple{
+    width: 100%;
+    margin: 5px;
+    pdding: 20px;
+    border: 1px solid black;
+}
+
+.stats__warrior--simple h3 {
+    margin: 5px;
+    font-size: 1rem;
+}
+
+.stats__warrior--simple p {
+    margin: 5px;
+    text-align: left;
+}
+
+.stats__warrior__container--simple{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.damage__text {
+    color: red;
+}

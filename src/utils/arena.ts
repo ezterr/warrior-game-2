@@ -16,11 +16,12 @@ export class Arena {
   public fight() {
     const fightLog: TourLog[] = [];
 
-    const tourLog: TourLog = this.nextTour();
+    let tourLog: TourLog = this.nextTour();
     fightLog.push(tourLog);
 
     while (tourLog.attacked.currentHp > 0) {
-      fightLog.push(this.nextTour());
+      tourLog = this.nextTour();
+      fightLog.push(tourLog);
     }
 
     return fightLog;
@@ -40,6 +41,7 @@ export class Arena {
       if (attacked.currentDefense < 0) {
         attacked.currentHp += attacked.currentDefense;
         hpDamage = attacked.currentDefense * (-1);
+        attacked.currentDefense = 0;
       }
     } else {
       attacked.currentHp -= attacker.strength;
