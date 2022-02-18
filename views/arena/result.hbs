@@ -8,7 +8,7 @@
         {{>warriorStats warrior=warriorTwo}}
     </section>
 
-    <h2>Przebieg walki</h2>
+    <h2>Przebieg walki &#9876</h2>
     <section class="fight__logs__container">
         {{#each fightLogs}}
             <div id="fight__log--{{@index}}" class="fight__log__container">
@@ -51,11 +51,16 @@
 
         <div id="fight__log--winner" class="fight__log__container">
             <div class="fight__log__element">
-                <h3>Wygrał {{winner.name}}!!!</h3>
+                <h3>Wygrywa!</h3>
+                <p class="icon__trophy">&#127942</p>
+                <h4>{{winner.name}}</h4>
             </div>
         </div>
     </section>
-    <button class="previous__button">poprzedni</button>
-    <button class="next__button">następny</button>
+
+    <div class="buttons__container">
+        <button class="previous__button">poprzedni</button>
+        <button class="next__button">następny</button>
+    </div>
 </main>
 <script src="/src/fight-result.js"></script>

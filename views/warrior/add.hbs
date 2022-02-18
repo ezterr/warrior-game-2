@@ -26,5 +26,17 @@
         <input name="agility" type="number">
     </label>
 
+    <fieldset class="avatars__container">
+        <legend>Awatar</legend>
+        {{#each imgName}}
+            <div class="avatar__container">
+                <label>
+                    <img src="/img/avatars/{{this}}" alt="avatar={{@index}}">
+                    <input type="radio" name="avatar" value="{{this}}" {{#unless @index}}checked{{/unless}}>
+                </label>
+            </div>
+        {{/each}}
+    </fieldset>
+
     <input type="submit">
 </form>

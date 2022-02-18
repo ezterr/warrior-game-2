@@ -5,6 +5,7 @@ export interface WarriorData {
     defense: number;
     stamina: number;
     agility: number;
+    avatar: string;
     winFights: number;
     loseFights: number;
 }

@@ -3,7 +3,7 @@
     <thead>
         <tr>
             <th>lp.</th>
-            <th>Nazwa wojownika</th>
+            <th>Wojownik</th>
             <th>Ilość zwycięstw</th>
             <th>Ilość przegranych</th>
         </tr>
@@ -13,7 +13,7 @@
         {{#each warriors}}
             <tr>
                 <td>{{@index}}</td>
-                <td>{{this.name}}</td>
+                <td><img src="/img/avatars/{{this.avatar}}" alt="">{{this.name}}</td>
                 <td>{{this.winFights}}</td>
                 <td>{{this.loseFights}}</td>
             </tr>

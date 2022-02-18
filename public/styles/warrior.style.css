@@ -1,0 +1,25 @@
+.avatars__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.avatar__container {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    position: relative;
+}
+
+.avatar__container img {
+    object-fit: cover;
+    position: relative;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.avatar__container input {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

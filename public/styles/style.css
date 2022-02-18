@@ -1,39 +1,73 @@
 *{
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    color: white;
+    font-family: sans-serif;
+}
+
+body {
+    background: #212125;
 }
 
 h1 {
     font-size: 3rem;
     text-align: center;
+    margin: 10px 0 50px 0;
+}
+
+h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.icon__trophy{
+    margin: 0;
+    font-size: 3rem;
 }
 
 /* warrior stats */
 .stats__warrior__container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    width: 70vw;
+    margin: 0 auto 50px auto;
 }
 
 .stats__warrior__element {
-    margin: 5px;
+    padding: 10px;
+    width: 40%;
+    background: #333336;
+    border: 2px solid #737373;
+    border-radius: 7px;
+}
+
+.stats__warrior__element h3 {
+    font-size: 1.5rem;
+}
+
+.stats__warrior__element ul {
+    list-style: none;
 }
 
 .vs{
-    font-size: 10rem;
+    font-size: 5rem;
 }
 
 /* fight result */
 .fight__logs__container{
     margin: auto;
     width: fit-content;
+    background: #333336;
+
 }
 
 .fight__log__container{
-    border: 2px solid black;
+    border: 2px solid #737373;
+    border-radius: 10px;
     text-align: center;
-    width: fit-content;
+    width: 70vw;
     padding: 5px;
     position: relative;
 }
@@ -52,7 +86,7 @@ h1 {
 }
 
 .fight__log__element p {
-    margin: 5px;
+    margin: 5px 5px 20px 5px;
 }
 
 .background__index {
@@ -67,8 +101,9 @@ h1 {
 .stats__warrior--simple{
     width: 100%;
     margin: 5px;
-    pdding: 20px;
-    border: 1px solid black;
+    padding: 10px;
+    border: 2px solid #737373;
+    border-radius: 5px;
 }
 
 .stats__warrior--simple h3 {
@@ -89,4 +124,25 @@ h1 {
 
 .damage__text {
     color: red;
+}
+
+.buttons__container {
+    width: fit-content;
+    margin: 20px auto;
+}
+
+.previous__button, .next__button {
+    margin: auto;
+    padding: 10px;
+    background: #333336;
+    border: none;
+    border-radius: 5px;
+}
+
+#fight__log--winner h3 {
+    font-size: 4rem;
+}
+
+#fight__log--winner h4 {
+    font-size: 2rem;
 }

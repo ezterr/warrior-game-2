@@ -12,6 +12,7 @@ export class WarriorRecord implements WarriorData {
   public readonly stamina: number;
   public readonly defense: number;
   public readonly agility: number;
+  public readonly avatar: string;
   public winFights: number;
   public loseFights: number;
   public currentHp: number;
@@ -25,6 +26,7 @@ export class WarriorRecord implements WarriorData {
     this.defense = warrior.defense;
     this.stamina = warrior.stamina;
     this.agility = warrior.agility;
+    this.avatar = warrior.avatar;
     this.winFights = warrior.winFights;
     this.loseFights = warrior.loseFights;
 
@@ -90,7 +92,7 @@ export class WarriorRecord implements WarriorData {
 
     await this.checkUniquenessName();
     await pool.execute('INSERT INTO `warrior` VALUES(:id, :name, :strength, :defense, :stamina, :agility, '
-        + ':winFights, :loseFights)', {
+        + ':winFights, :loseFights, :avatar)', {
       id: this.id,
       name: this.name,
       strength: this.strength,
@@ -99,6 +101,7 @@ export class WarriorRecord implements WarriorData {
       agility: this.agility,
       winFights: this.winFights,
       loseFights: this.loseFights,
+      avatar: this.avatar,
     });
 
     return this.id;
