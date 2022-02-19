@@ -12,10 +12,10 @@
     <tbody>
         {{#each warriors}}
             <tr>
-                <td>{{@index}}</td>
-                <td><img src="/img/avatars/{{this.avatar}}" alt="">{{this.name}}</td>
-                <td>{{this.winFights}}</td>
-                <td>{{this.loseFights}}</td>
+                <td><div class="field--center">{{@index}}</div></td>
+                <td><div class="field--left"><img class="avatar__img" src="/img/avatars/{{this.avatar}}" alt="">{{this.name}}</div></td>
+                <td><div class="field--center">{{this.winFights}}</div></td>
+                <td><div class="field--center">{{this.loseFights}}</div></td>
             </tr>
         {{/each}}
     </tbody>

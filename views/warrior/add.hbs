@@ -1,41 +1,45 @@
 <h1>Stwórz wojownika</h1>
 
 <form action="/warrior" method="post">
-    <label>
-        Nazwa wojownika
-        <input name="name" type="text">
-    </label>
+    <div class="inputs__container">
+        <label>
+            Nazwa wojownika
+            <input name="name" type="text" placeholder="Nazwa wojownika">
+        </label>
 
-    <label>
-        Siła
-        <input name="strength" type="number">
-    </label>
+        <label>
+            Siła
+            <input name="strength" type="number" placeholder="Siła">
+        </label>
 
-    <label>
-        Obrona
-        <input name="defense" type="number">
-    </label>
+        <label>
+            Obrona
+            <input name="defense" type="number" placeholder="Obrona">
+        </label>
 
-    <label>
-        Wytrzymałość
-        <input name="stamina" type="number">
-    </label>
+        <label>
+            Wytrzymałość
+            <input name="stamina" type="number" placeholder="Wytrzymałość">
+        </label>
 
-    <label>
-        zwinność
-        <input name="agility" type="number">
-    </label>
+        <label>
+            zwinność
+            <input name="agility" type="number" placeholder="Zwinność">
+        </label>
+    </div>
 
-    <fieldset class="avatars__container">
+    <fieldset>
         <legend>Awatar</legend>
-        {{#each imgName}}
-            <div class="avatar__container">
-                <label>
-                    <img src="/img/avatars/{{this}}" alt="avatar={{@index}}">
-                    <input type="radio" name="avatar" value="{{this}}" {{#unless @index}}checked{{/unless}}>
-                </label>
-            </div>
-        {{/each}}
+        <div class="avatars__container">
+            {{#each imgName}}
+                <div class="avatar__container">
+                    <label>
+                        <img src="/img/avatars/{{this}}" alt="avatar={{@index}}">
+                        <input type="radio" name="avatar" value="{{this}}" {{#unless @index}}checked{{/unless}}>
+                    </label>
+                </div>
+            {{/each}}
+        </div>
     </fieldset>
 
     <input type="submit">

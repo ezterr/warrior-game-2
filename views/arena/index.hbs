@@ -1,23 +1,25 @@
 <h1>Arena</h1>
 
 <form action="/arena" method="post">
-    <label>Pierwszy wojownik
-        <select name="warriorOne" id="warrior--one">
-            <option value="">brak</option>
-            {{#each warriors}}
-                <option value="{{this.id}}">{{this.name}} - {{this.winFights}} wins</option>
-            {{/each}}
-        </select>
-    </label>
-
-    <label>Drugi wojownik
-        <select name="warriorTwo" id="warrior--one">
-            <option value="">brak</option>
-            {{#each warriors}}
-                <option value="{{this.id}}">{{this.name}} - {{this.winFights}} wins</option>
-            {{/each}}
-        </select>
-    </label>
+    <div class="inputs__container">
+        <label>Pierwszy wojownik
+            <select name="warriorOne" id="warrior--one">
+                <option value="">brak</option>
+                {{#each warriors}}
+                    <option value="{{this.id}}">{{this.name}} - {{this.winFights}} wins</option>
+                {{/each}}
+            </select>
+        </label>
+        <p class="vs">VS</p>
+        <label>Drugi wojownik
+            <select name="warriorTwo" id="warrior--one">
+                <option value="">brak</option>
+                {{#each warriors}}
+                    <option value="{{this.id}}">{{this.name}} - {{this.winFights}} wins</option>
+                {{/each}}
+            </select>
+        </label>
+    </div>
 
     <input type="submit" value="walka">
 </form>

@@ -9,5 +9,7 @@ router
 
     res.render('ranking', {
       warriors,
+      pageTitle: 'Ranking - Warrior Game',
+      styles: ['style.css', 'ranking.style.css'],
     });
   });

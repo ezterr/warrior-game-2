@@ -8,6 +8,8 @@ export class ArenaController {
 
     res.render('arena', {
       warriors,
+      pageTitle: 'Arena - Warrior Game',
+      styles: ['style.css', 'arena.style.css'],
     });
   }
 
@@ -15,6 +17,7 @@ export class ArenaController {
     const { warriorOne: warriorOneId, warriorTwo: warriorTwoId } = req.body as Record<string, string>;
 
     if (!warriorOneId || !warriorTwoId) throw new Error('You must select warriors');
+    if (warriorOneId === warriorTwoId) throw new Error('Warrior must be unique');
 
     const warriorOne = await WarriorRecord.findById(warriorOneId);
     const warriorTwo = await WarriorRecord.findById(warriorTwoId);
@@ -29,6 +32,8 @@ export class ArenaController {
       warriorOne,
       warriorTwo,
       winner: fightLogs[fightLogs.length - 1].attacker,
+      pageTitle: `Walka ${warriorOne.name} vs ${warriorTwo.name} - Warrior Game`,
+      styles: ['style.css', 'fight-result.style.css'],
     });
   }
 

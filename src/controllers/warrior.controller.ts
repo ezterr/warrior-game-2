@@ -8,6 +8,8 @@ export class WarriorController {
     const imgName = await loadImgName(AVATAR_PATH);
     res.render('warrior/add', {
       imgName,
+      pageTitle: 'Stwórz Wojownika - Warrior Game',
+      styles: ['style.css', 'warrior.style.css'],
     });
   }
 

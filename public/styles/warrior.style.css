@@ -1,7 +1,53 @@
+form{
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.inputs__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+input[type="text"], input[type="number"]{
+    color: white;
+    border: 1px solid #737373;
+    padding: 3px;
+    background: #333336;
+    font-weight: bold;
+}
+
+input[type="submit"]{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #737373;
+    color: white;
+    background: #333336;
+    margin: 10px auto;
+}
+
+input::placeholder {
+    color: #b2b2b2;
+    font-weight: normal;
+}
+
+.inputs__container label {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
 .avatars__container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+fieldset {
+    width: fit-content;
 }
 
 .avatar__container {

@@ -1,0 +1,40 @@
+form{
+    width: fit-content;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.inputs__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vs {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 0 30px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+select{
+    height: 30px;
+    color: white;
+    background: #333336;
+    border: 1px solid #737373;
+}
+
+input[type="submit"]{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #737373;
+    color: white;
+    background: #333336;
+    margin: 10px auto;
+}
