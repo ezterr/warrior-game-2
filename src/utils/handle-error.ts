@@ -1,6 +1,6 @@
+/* eslint-disable max-classes-per-file */
 import { Request, Response, NextFunction } from 'express';
 
-/* eslint-disable max-classes-per-file */
 export class CreateWarriorValidationError extends Error {}
 export class ArenaValidationError extends Error {}
 export class NotFoundError extends Error {}

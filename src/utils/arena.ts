@@ -13,7 +13,7 @@ export class Arena {
     this.activeWarrior = ActiveWarrior[ActiveWarrior[Math.round(Math.random())] as keyof typeof ActiveWarrior];
   }
 
-  public fight() {
+  public fight(): TourLog[] {
     const fightLog: TourLog[] = [];
 
     let tourLog: TourLog = this.nextTour();
@@ -27,7 +27,7 @@ export class Arena {
     return fightLog;
   }
 
-  public nextTour() {
+  public nextTour(): TourLog {
     const attacker = this.activeWarrior === ActiveWarrior.first ? this.warriorOne : this.warriorTwo;
     const attacked = this.activeWarrior === ActiveWarrior.first ? this.warriorTwo : this.warriorOne;
 

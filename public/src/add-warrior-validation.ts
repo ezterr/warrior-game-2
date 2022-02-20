@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 const skillInput = document.querySelectorAll('input[type="number"]');
 const skillsErrorContainer = document.querySelector('.error__container--skills');
 const skillsCountContainer = document.querySelector('.points__container');

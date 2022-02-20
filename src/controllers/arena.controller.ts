@@ -28,6 +28,9 @@ export class ArenaController {
     const arena = new Arena(warriorOne as WarriorRecord, warriorTwo as WarriorRecord);
     const fightLogs = arena.fight();
 
+    await fightLogs[fightLogs.length - 1].attacker.addWin();
+    await fightLogs[fightLogs.length - 1].attacked.addLose();
+
     res.render('arena/result', {
       fightLogs,
       warriorOne,
