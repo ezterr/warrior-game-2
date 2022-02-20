@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { v4 as uuid } from 'uuid';
 import { pool } from '../utils/db';
+import { CreateWarriorValidationError } from '../utils/handle-error';
 export class WarriorRecord {
     constructor(warrior) {
         this.id = null;
@@ -19,6 +20,7 @@ export class WarriorRecord {
         this.defense = warrior.defense;
         this.stamina = warrior.stamina;
         this.agility = warrior.agility;
+        this.avatar = warrior.avatar;
         this.winFights = warrior.winFights;
         this.loseFights = warrior.loseFights;
         this.currentHp = warrior.stamina * 10;
@@ -27,16 +29,18 @@ export class WarriorRecord {
     }
     validate() {
         if (!this.name || this.name.trim().length < 3 || this.name.length > 50) {
-            throw new Error('name must contain at least 3 characters, cannot exceed 50 characters and must be a string.');
+            throw new CreateWarriorValidationError('name must contain at least 3 characters, cannot exceed 50 characters '
+                + 'and must be a string.');
         }
         const warriorPointsSum = this.strength + this.stamina + this.agility + this.defense;
-        if (warriorPointsSum !== 10)
-            throw new Error('Each fighter must be allocated 10 points. No more, no less.');
+        if (warriorPointsSum !== 10) {
+            throw new CreateWarriorValidationError('Each fighter must be allocated 10 points. No more, no less.');
+        }
         if (this.strength <= 0 || this.stamina <= 0 || this.agility <= 0 || this.defense <= 0) {
-            throw new Error('Each skill should be assigned at least 1 point.');
+            throw new CreateWarriorValidationError('Each skill should be assigned at least 1 point.');
         }
         if (Number.isNaN(Number(this.winFights)) || Number.isNaN(Number(this.loseFights))) {
-            throw new Error('wins or lose must be a number');
+            throw new CreateWarriorValidationError('wins or lose must be a number');
         }
     }
     checkUniquenessName() {
@@ -46,7 +50,7 @@ export class WarriorRecord {
             });
             const withoutThisRecord = result.filter((e) => e.id !== this.id);
             if (withoutThisRecord.length)
-                throw new Error('Your name is not unique');
+                throw new CreateWarriorValidationError('Your name is not unique');
         });
     }
     static findAll() {
@@ -79,7 +83,7 @@ export class WarriorRecord {
             this.id = (_a = this.id) !== null && _a !== void 0 ? _a : uuid();
             yield this.checkUniquenessName();
             yield pool.execute('INSERT INTO `warrior` VALUES(:id, :name, :strength, :defense, :stamina, :agility, '
-                + ':winFights, :loseFights)', {
+                + ':winFights, :loseFights, :avatar)', {
                 id: this.id,
                 name: this.name,
                 strength: this.strength,
@@ -88,6 +92,7 @@ export class WarriorRecord {
                 agility: this.agility,
                 winFights: this.winFights,
                 loseFights: this.loseFights,
+                avatar: this.avatar,
             });
             return this.id;
         });
@@ -96,7 +101,7 @@ export class WarriorRecord {
         return __awaiter(this, void 0, void 0, function* () {
             this.validate();
             if (!id)
-                throw new Error('You must enter the id');
+                throw new CreateWarriorValidationError('You must enter the id');
             yield pool.execute('UPDATE `warrior` SET `winFights`=:winFights, loseFights=:loseFights WHERE `id`=:id;', {
                 id,
                 winFights: this.winFights,
@@ -107,7 +112,7 @@ export class WarriorRecord {
     addWin() {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.id)
-                throw new Error('The record must contain id.');
+                throw new CreateWarriorValidationError('The record must contain id.');
             this.winFights++;
             yield this.updateWinRatio(this.id);
         });
@@ -115,7 +120,7 @@ export class WarriorRecord {
     addLose() {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.id)
-                throw new Error('The record must contain id.');
+                throw new CreateWarriorValidationError('The record must contain id.');
             this.loseFights++;
             yield this.updateWinRatio(this.id);
         });

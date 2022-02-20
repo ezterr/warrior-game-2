@@ -8,6 +8,7 @@ form{
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 input[type="text"], input[type="number"]{
@@ -25,6 +26,10 @@ input[type="submit"]{
     color: white;
     background: #333336;
     margin: 10px auto;
+}
+
+input[type="submit"]:disabled{
+    background: #696969;
 }
 
 input::placeholder {

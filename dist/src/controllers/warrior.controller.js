@@ -8,40 +8,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { WarriorRecord } from '../records/warrior.record';
+import { loadImgName } from '../utils/load-img-name';
+import { AVATAR_PATH } from '../../config';
 export class WarriorController {
     static addView(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.render('warrior/add');
+            const imgName = yield loadImgName(AVATAR_PATH);
+            res.render('warrior/add', {
+                imgName,
+                pageTitle: 'Stwórz Wojownika - Warrior Game',
+                styles: ['style.css', 'warrior.style.css'],
+            });
         });
     }
     static add(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { name, strength, defense, stamina, agility, avatar, } = req.body;
             const warrior = new WarriorRecord({
-                name: String(req.body.name),
-                strength: Number(req.body.strength),
-                defense: Number(req.body.defense),
-                stamina: Number(req.body.stamina),
-                agility: Number(req.body.agility),
+                name: String(name),
+                strength: Number(strength),
+                defense: Number(defense),
+                stamina: Number(stamina),
+                agility: Number(agility),
+                avatar: String(avatar),
                 winFights: 0,
                 loseFights: 0,
             });
             yield warrior.insert();
             res.redirect('/arena');
-        });
-    }
-    static editView(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            res.render('warrior/edit');
-        });
-    }
-    static edit(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            res.send('edit');
-        });
-    }
-    static delete(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            res.send('delete');
         });
     }
 }

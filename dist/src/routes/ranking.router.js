@@ -15,6 +15,8 @@ router
     const warriors = yield WarriorRecord.findGivenQuantity(10);
     res.render('ranking', {
         warriors,
+        pageTitle: 'Ranking - Warrior Game',
+        styles: ['style.css', 'ranking.style.css'],
     });
 }));
 //# sourceMappingURL=ranking.router.js.map

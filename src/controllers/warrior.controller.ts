@@ -32,16 +32,4 @@ export class WarriorController {
 
     res.redirect('/arena');
   }
-
-  public static async editView(req: Request, res: Response) {
-    res.render('warrior/edit');
-  }
-
-  public static async edit(req: Request, res: Response) {
-    res.send('edit');
-  }
-
-  public static async delete(req: Request, res: Response) {
-    res.send('delete');
-  }
 }

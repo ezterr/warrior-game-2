@@ -28,6 +28,7 @@ export class Arena {
             if (attacked.currentDefense < 0) {
                 attacked.currentHp += attacked.currentDefense;
                 hpDamage = attacked.currentDefense * (-1);
+                attacked.currentDefense = 0;
             }
         }
         else {

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { WarriorRecord } from '../records/warrior.record';
 import { Arena } from '../utils/arena';
+import { ArenaValidationError, NotFoundError } from '../utils/handle-error';
 
 export class ArenaController {
   public static async arenaView(req: Request, res: Response) {
@@ -16,13 +17,13 @@ export class ArenaController {
   public static async fight(req: Request, res: Response) {
     const { warriorOne: warriorOneId, warriorTwo: warriorTwoId } = req.body as Record<string, string>;
 
-    if (!warriorOneId || !warriorTwoId) throw new Error('You must select warriors');
-    if (warriorOneId === warriorTwoId) throw new Error('Warrior must be unique');
+    if (!warriorOneId || !warriorTwoId) throw new ArenaValidationError('You must select warriors');
+    if (warriorOneId === warriorTwoId) throw new ArenaValidationError('Warrior must be unique');
 
     const warriorOne = await WarriorRecord.findById(warriorOneId);
     const warriorTwo = await WarriorRecord.findById(warriorTwoId);
 
-    if (!warriorOne || !warriorTwo) throw new Error('Warrior not found');
+    if (!warriorOne || !warriorTwo) throw new NotFoundError('Warrior not found');
 
     const arena = new Arena(warriorOne as WarriorRecord, warriorTwo as WarriorRecord);
     const fightLogs = arena.fight();

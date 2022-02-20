@@ -10,6 +10,10 @@ body {
     background: #212125;
 }
 
+.small__p{
+    font-size: .8rem;
+}
+
 h1 {
     font-size: 3rem;
     text-align: center;
@@ -19,4 +23,53 @@ h1 {
 h2 {
     font-size: 2rem;
     text-align: center;
+}
+
+.error--validation {
+    color: red;
+    text-align: center;
+    margin: 10px;
+}
+
+nav {
+    border-bottom: 1px solid white;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+nav>ul {
+    display: flex;
+    list-style: none;
+}
+
+nav>ul li {
+    margin: 20px 10px;
+    font-size: 1.2rem;
+}
+
+li a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #b2b2b2;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    margin: 0 40px 0 10px;
+}
+
+.error {
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.error p{
+    color: red;
 }

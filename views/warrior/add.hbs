@@ -2,29 +2,34 @@
 
 <form action="/warrior" method="post">
     <div class="inputs__container">
+        <p class="error__container--name error--validation"></p>
         <label>
             Nazwa wojownika
             <input name="name" type="text" placeholder="Nazwa wojownika">
         </label>
+    </div>
+
+    <div class="inputs__container">
+        <p class="small__p">Punkty do przydzielenia: <span class="points__container"></span></p>
 
         <label>
             Siła
-            <input name="strength" type="number" placeholder="Siła">
+            <input name="strength" type="number" placeholder="Siła" min="1" max="7" value="1">
         </label>
 
         <label>
             Obrona
-            <input name="defense" type="number" placeholder="Obrona">
+            <input name="defense" type="number" placeholder="Obrona" min="1" max="7" value="1">
         </label>
 
         <label>
             Wytrzymałość
-            <input name="stamina" type="number" placeholder="Wytrzymałość">
+            <input name="stamina" type="number" placeholder="Wytrzymałość" min="1" max="7" value="1">
         </label>
 
         <label>
             zwinność
-            <input name="agility" type="number" placeholder="Zwinność">
+            <input name="agility" type="number" placeholder="Zwinność" min="1" max="7" value="1">
         </label>
     </div>
 
@@ -41,6 +46,9 @@
             {{/each}}
         </div>
     </fieldset>
+    <p class="error__container--skills error--validation"></p>
 
     <input type="submit">
 </form>
+
+<script src="/src/add-warrior-validation.js"></script>

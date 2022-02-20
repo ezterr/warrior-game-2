@@ -12,7 +12,7 @@
     <tbody>
         {{#each warriors}}
             <tr>
-                <td><div class="field--center">{{@index}}</div></td>
+                <td><div class="field--center">{{sum @index 1}}</div></td>
                 <td><div class="field--left"><img class="avatar__img" src="/img/avatars/{{this.avatar}}" alt="">{{this.name}}</div></td>
                 <td><div class="field--center">{{this.winFights}}</div></td>
                 <td><div class="field--center">{{this.loseFights}}</div></td>
